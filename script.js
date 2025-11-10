@@ -53,5 +53,3 @@ function playGame() {
     console.log("It's a tie game! You both win!")
   }
 }
-
-playGame();
