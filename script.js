@@ -14,13 +14,42 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    return 0;
+    console.log(`It's a tie! Both chose ${humanChoice}.`);
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    console.log("Human wins round!");
+    return "human"
+  } else {
+    console.log("Computer wins round!");
+    return "computer"
   }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-let humanScore = 0;
-let computerScore = 0;
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
 
-playRound(humanSelection, computerSelection);
+  while (humanScore < 5 && computerScore < 5) {
+    const roundResult = playRound(getHumanChoice(), getComputerChoice())
+    if (roundResult === "human") {
+      humanScore++
+    } else if (roundResult === "computer") {
+      computerScore++
+    } else {
+      continue;
+    }
+
+    console.log(`Human: ${humanScore}, Computer: ${computerScore}`)
+  }
+
+  if (humanScore > computerScore) {
+    console.log("The human wins!")
+  } else {
+    console.log("The computer wins!")
+  }
+}
+
+playGame();
