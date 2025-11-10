@@ -31,24 +31,26 @@ function playRound(humanChoice, computerChoice) {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
+  let roundCounter = 1;
 
-  while (humanScore < 5 && computerScore < 5) {
+  while (roundCounter <= 5) {
     const roundResult = playRound(getHumanChoice(), getComputerChoice())
     if (roundResult === "human") {
       humanScore++
     } else if (roundResult === "computer") {
       computerScore++
-    } else {
-      continue;
-    }
+    } 
 
-    console.log(`Human: ${humanScore}, Computer: ${computerScore}`)
+    console.log(`ROUND ${roundCounter} - Human: ${humanScore}, Computer: ${computerScore}`)
+    roundCounter++
   }
 
   if (humanScore > computerScore) {
     console.log("The human wins!")
-  } else {
+  } else if (computerScore > humanScore) {
     console.log("The computer wins!")
+  } else {
+    console.log("It's a tie game! You both win!")
   }
 }
 
